@@ -1,0 +1,411 @@
+/* ==========================================================================
+   网页游戏导航站 · 样式
+   --------------------------------------------------------------------------
+   这个仓库只有一件事：把各个游戏仓库的网页汇总成一个导航页。
+   所以样式也围绕「卡片列表」这一件事，没有游戏相关的组件。
+
+   加新游戏不需要动这个文件，只需要在 assets/js/games.js 里加一条数据。
+   ========================================================================== */
+
+/* ---------- 设计令牌：全站唯一的颜色来源 ---------- */
+:root {
+  --bg: #0b1020;
+  --surface: #141a2e;
+  --surface-2: #1b2340;
+  --border: #2a3358;
+  --text: #e8ecff;
+  --muted: #93a0c8;
+  --accent: #6ea8fe;
+  --accent-2: #b98cff;
+  --good: #4ade80;
+
+  --radius: 14px;
+  --radius-lg: 20px;
+  --shadow: 0 10px 30px #00000055;
+  --shadow-lg: 0 24px 60px #00000070;
+
+  --container: 1080px;
+  --font: ui-sans-serif, system-ui, -apple-system, "Segoe UI", "PingFang SC",
+    "Hiragino Sans GB", "Microsoft YaHei", sans-serif;
+  --mono: ui-monospace, SFMono-Regular, "SF Mono", Consolas, "Liberation Mono",
+    monospace;
+}
+
+/* ---------- 基础 ---------- */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  font-family: var(--font);
+  color: var(--text);
+  background-color: var(--bg);
+  background-image:
+    radial-gradient(1100px 560px at 12% -12%, #1b2a6b66, transparent 62%),
+    radial-gradient(900px 520px at 108% 4%, #6b1b5c4d, transparent 60%),
+    radial-gradient(700px 500px at 50% 120%, #0f766e33, transparent 65%);
+  background-attachment: fixed;
+  -webkit-font-smoothing: antialiased;
+  line-height: 1.65;
+}
+
+h1,
+h2,
+h3 {
+  line-height: 1.25;
+  margin: 0 0 0.4em;
+  letter-spacing: -0.01em;
+}
+
+h1 {
+  font-size: clamp(1.8rem, 4.4vw, 2.5rem);
+}
+
+p {
+  margin: 0 0 1em;
+}
+
+a {
+  color: var(--accent);
+  text-decoration: none;
+}
+
+a:hover {
+  color: var(--accent-2);
+}
+
+:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 3px;
+  border-radius: 6px;
+}
+
+.container {
+  width: 100%;
+  max-width: var(--container);
+  margin-inline: auto;
+  padding-inline: clamp(16px, 4vw, 32px);
+}
+
+.muted {
+  color: var(--muted);
+}
+
+/* ---------- 头部 ---------- */
+.site-header {
+  padding: clamp(28px, 6vw, 64px) 0 clamp(18px, 4vw, 30px);
+}
+
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+.logo {
+  display: grid;
+  place-items: center;
+  width: 46px;
+  height: 46px;
+  border-radius: 14px;
+  font-size: 24px;
+  background: linear-gradient(140deg, var(--accent), var(--accent-2));
+  box-shadow: var(--shadow);
+}
+
+.site-header h1 {
+  margin: 0;
+  background: linear-gradient(100deg, #ffffff, var(--accent) 45%, var(--accent-2));
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+.tagline {
+  margin: 14px 0 0;
+  max-width: 62ch;
+  color: var(--muted);
+  font-size: clamp(0.95rem, 1.6vw, 1.08rem);
+}
+
+.header-meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-top: 20px;
+}
+
+/* ---------- 工具条（搜索） ---------- */
+.toolbar {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 20px;
+}
+
+/* display:flex 会盖掉 hidden 属性的 UA 默认样式，这里显式兜底 */
+.toolbar[hidden] {
+  display: none;
+}
+
+.search {
+  flex: 1 1 auto;
+  max-width: 380px;
+  padding: 10px 16px;
+  border: 1px solid var(--border);
+  border-radius: 999px;
+  background: #ffffff0a;
+  color: var(--text);
+  font: inherit;
+  font-size: 0.92rem;
+}
+
+.search::placeholder {
+  color: var(--muted);
+}
+
+.search:focus {
+  border-color: var(--accent);
+  background: #ffffff12;
+  outline: none;
+}
+
+/* ---------- 游戏卡片 ---------- */
+.game-grid {
+  display: grid;
+  gap: 20px;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  padding-bottom: clamp(40px, 8vw, 80px);
+}
+
+.game-card {
+  position: relative;
+  display: flex;
+  gap: 16px;
+  padding: 20px;
+  overflow: hidden;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  background: linear-gradient(170deg, var(--surface-2), var(--surface));
+  box-shadow: var(--shadow);
+  transition: transform 0.25s ease, border-color 0.25s ease, box-shadow 0.25s ease;
+}
+
+.game-card::after {
+  /* 跟随鼠标的高光，坐标由 assets/js/main.js 写入 */
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  background: radial-gradient(
+    260px circle at var(--mx, 50%) var(--my, 0%),
+    #6ea8fe26,
+    transparent 70%
+  );
+}
+
+.game-card:hover {
+  transform: translateY(-4px);
+  border-color: #3d4a80;
+  box-shadow: var(--shadow-lg);
+}
+
+.game-card:hover::after {
+  opacity: 1;
+}
+
+/* 还没部署网页的游戏：整张卡片降级显示 */
+.game-card.is-soon {
+  opacity: 0.72;
+}
+
+.game-card.is-soon:hover {
+  transform: none;
+  border-color: var(--border);
+  box-shadow: var(--shadow);
+}
+
+.card-icon {
+  display: grid;
+  place-items: center;
+  flex: 0 0 auto;
+  width: 56px;
+  height: 56px;
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  font-size: 28px;
+  line-height: 1;
+  background: radial-gradient(40px 40px at 30% 20%, #6ea8fe26, transparent 70%), #0b1020;
+}
+
+.card-body {
+  display: flex;
+  flex-direction: column;
+  flex: 1 1 auto;
+  min-width: 0;
+  gap: 8px;
+}
+
+.card-body h3 {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin: 0;
+  font-size: 1.15rem;
+}
+
+.card-body p {
+  margin: 0;
+  color: var(--muted);
+  font-size: 0.92rem;
+}
+
+.card-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 2px;
+}
+
+.card-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-top: auto;
+  padding-top: 12px;
+}
+
+/* ---------- 通用小组件 ---------- */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 9px 18px;
+  border: 1px solid var(--border);
+  border-radius: 999px;
+  background: #ffffff0d;
+  color: var(--text);
+  font: inherit;
+  font-size: 0.92rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: transform 0.15s ease, background 0.2s ease, border-color 0.2s ease;
+}
+
+.btn:hover {
+  background: #ffffff1a;
+  border-color: var(--accent);
+}
+
+.btn:active {
+  transform: scale(0.97);
+}
+
+.btn-primary {
+  border-color: transparent;
+  background: linear-gradient(120deg, var(--accent), var(--accent-2));
+  color: #0b1020;
+}
+
+.btn-primary:hover {
+  background: linear-gradient(120deg, #87b9ff, #c9a4ff);
+  border-color: transparent;
+}
+
+.pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 4px 12px;
+  border: 1px solid var(--border);
+  border-radius: 999px;
+  background: #ffffff0a;
+  color: var(--muted);
+  font-size: 0.78rem;
+  line-height: 1.8;
+  white-space: nowrap;
+}
+
+.pill-accent {
+  border-color: #4ade8055;
+  background: #4ade801a;
+  color: var(--good);
+}
+
+/* 空状态 / 无结果 */
+.empty {
+  grid-column: 1 / -1;
+  padding: 48px 24px;
+  border: 1px dashed var(--border);
+  border-radius: var(--radius-lg);
+  text-align: center;
+  color: var(--muted);
+}
+
+.empty strong {
+  display: block;
+  margin-bottom: 6px;
+  color: var(--text);
+  font-size: 1.05rem;
+}
+
+/* ---------- 底部 ---------- */
+.site-footer {
+  border-top: 1px solid var(--border);
+  padding: 26px 0 40px;
+  color: var(--muted);
+  font-size: 0.88rem;
+}
+
+.site-footer .container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  justify-content: space-between;
+  align-items: center;
+}
+
+/* ---------- 响应式与可访问性 ---------- */
+@media (max-width: 640px) {
+  .game-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .game-card {
+    padding: 16px;
+    gap: 14px;
+  }
+
+  .card-icon {
+    width: 48px;
+    height: 48px;
+    font-size: 24px;
+  }
+
+  .card-actions .btn {
+    flex: 1 1 auto;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    transition-duration: 0.001ms !important;
+    scroll-behavior: auto !important;
+  }
+}

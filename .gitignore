@@ -1,0 +1,13 @@
+# 操作系统 / 编辑器产生的杂项文件
+.DS_Store
+Thumbs.db
+desktop.ini
+.idea/
+.vscode/
+*.swp
+
+# 本项目刻意不引入构建工具，下面这些只是防止误提交
+node_modules/
+package-lock.json
+dist/
+*.log

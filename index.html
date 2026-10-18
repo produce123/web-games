@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>网页游戏导航 · Web Games</title>
+    <meta
+      name="description"
+      content="我的网页游戏导航页：每个游戏都是独立的仓库、独立部署，这里只负责把它们汇总到一起。"
+    />
+    <link rel="stylesheet" href="assets/css/style.css" />
+  </head>
+  <body>
+    <header class="site-header">
+      <div class="container">
+        <div class="brand">
+          <span class="logo" aria-hidden="true">🎮</span>
+          <h1>网页游戏导航</h1>
+        </div>
+        <p class="tagline">
+          这里是一个导航页，本身不装游戏。每个游戏都放在自己独立的仓库里、独立部署，
+          这个页面只负责把它们汇总到一起，点一下就能玩。
+        </p>
+        <div class="header-meta">
+          <span class="pill pill-accent">共 <span id="count">0</span> 个游戏</span>
+          <span class="pill">🧩 每个游戏一个仓库</span>
+          <span class="pill">📱 手机可玩</span>
+          <a
+            class="pill"
+            href="https://github.com/produce123/web-games"
+            target="_blank"
+            rel="noopener"
+            >★ 本站源码</a
+          >
+        </div>
+      </div>
+    </header>
+
+    <main class="container">
+      <!-- 游戏数量少于 4 个时，脚本会把这个搜索条隐藏起来 -->
+      <div class="toolbar" id="toolbar" hidden>
+        <label class="muted" for="search" hidden>搜索</label>
+        <input
+          class="search"
+          id="search"
+          type="search"
+          placeholder="搜索游戏名字或标签…"
+          autocomplete="off"
+        />
+      </div>
+
+      <section class="game-grid" id="grid" aria-label="游戏列表"></section>
+
+      <noscript>
+        <div class="empty">
+          <strong>需要开启 JavaScript</strong>
+          这份游戏清单由 assets/js/games.js 渲染，开启 JavaScript 后即可看到。
+          也可以直接访问我的 GitHub：<a href="https://github.com/produce123?tab=repositories"
+            >github.com/produce123</a
+          >
+        </div>
+      </noscript>
+    </main>
+
+    <footer class="site-footer">
+      <div class="container">
+        <span>© <span id="year">2026</span> produce123 · 纯静态导航页，零依赖零构建</span>
+        <span>
+          <a href="https://github.com/produce123/web-games" target="_blank" rel="noopener"
+            >github.com/produce123/web-games</a
+          >
+          · 由 GitHub Pages 托管
+        </span>
+      </div>
+    </footer>
+
+    <script src="assets/js/games.js"></script>
+    <script src="assets/js/main.js"></script>
+  </body>
+</html>
