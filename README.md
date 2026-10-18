@@ -2,7 +2,11 @@
 
 我的网页游戏**导航页**。这个仓库本身不装游戏，只做一件事：把分散在各个游戏仓库里的网页汇总成一个好看的入口，点一下就能玩。
 
-**在线访问：<https://produce123.github.io/web-games/>**
+**在线访问：<https://home.prodhub.me/web-games/>**
+
+> 因为账号的用户站 `produce123.github.io` 绑定了自定义域名 `home.prodhub.me`，
+> GitHub 会把本项目也放到该域名下。`https://produce123.github.io/web-games/`
+> 同样可用，它会自动跳转到上面的地址。
 
 ---
 
@@ -80,13 +84,9 @@ python -m http.server 8000
 
 1. 修改后推送到 `main` 分支。
 2. 仓库 **Settings → Pages**：Source 选 `Deploy from a branch`，Branch 选 `main`，目录选 `/ (root)`，保存。
-3. 等一两分钟，访问 <https://produce123.github.io/web-games/>。
+3. 等一两分钟，访问 <https://home.prodhub.me/web-games/>（或 <https://produce123.github.io/web-games/>）。
 
 之后每次推送 `main`，Pages 会自动重新发布，通常 1 分钟内生效。
-
-> 注意：你的用户站 `produce123.github.io` 绑定了自定义域名 `home.prodhub.me`。
-> 这种情况下 GitHub 会把项目站也放到该域名下，所以本站在自定义域名下的地址是
-> **<https://home.prodhub.me/web-games/>**，两个地址都可以用。
 
 ## 许可
 
