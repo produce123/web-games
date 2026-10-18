@@ -11,7 +11,12 @@
 
   if (!grid) return;
 
-  var games = Array.isArray(window.GAMES) ? window.GAMES : [];
+  // pinned 的条目排到最前面；其余保持 games.js 里的书写顺序（sort 是稳定的）
+  var games = (Array.isArray(window.GAMES) ? window.GAMES.slice() : []).sort(
+    function (a, b) {
+      return (b.pinned ? 1 : 0) - (a.pinned ? 1 : 0);
+    }
+  );
 
   /* ---------- 渲染 ---------- */
   function cardOf(game) {
@@ -66,7 +71,7 @@
       // 本站是导航页，游戏都在别的仓库/域名下，所以新标签打开
       play.target = "_blank";
       play.rel = "noopener";
-      play.textContent = "开始游戏";
+      play.textContent = game.action || "开始游戏";
       actions.appendChild(play);
     }
 

@@ -2,11 +2,17 @@
 
 我的网页游戏**导航页**。这个仓库本身不装游戏，只做一件事：把分散在各个游戏仓库里的网页汇总成一个好看的入口，点一下就能玩。
 
-**在线访问：<https://home.prodhub.me/web-games/>**
+**在线访问：<https://game.prodhub.me/>** ← 最短，推荐记这个
 
-> 因为账号的用户站 `produce123.github.io` 绑定了自定义域名 `home.prodhub.me`，
-> GitHub 会把本项目也放到该域名下。`https://produce123.github.io/web-games/`
-> 同样可用，它会自动跳转到上面的地址。
+三个地址打开的是同一个页面：
+
+| 地址 | 说明 |
+| --- | --- |
+| <https://game.prodhub.me/> | 我配的短地址，301 跳转到规范地址（**后面不要再加路径**，加了会 404） |
+| <https://home.prodhub.me/web-games/> | 规范地址，GitHub Pages 实际发布的位置 |
+| <https://produce123.github.io/web-games/> | 仓库默认地址，会自动跳转到规范地址 |
+
+> 为什么规范地址是 `home.prodhub.me` 而不是 `produce123.github.io`：账号的用户站绑定了自定义域名 `home.prodhub.me`，GitHub 会把同账号下的项目站也放到该域名下。所以 `https://home.prodhub.me/<仓库名>/` 就是每个游戏仓库开启 Pages 后的地址。
 
 ---
 
@@ -26,7 +32,7 @@ web-games/
 ├── assets/
 │   ├── css/style.css       # 全部样式：设计令牌 + 卡片列表
 │   └── js/
-│       ├── games.js        # ★ 游戏清单，唯一需要经常改的文件
+│       ├── games.js        # ★ 导航清单，唯一需要经常改的文件
 │       └── main.js         # 渲染卡片、搜索、页脚
 ├── LICENSE
 └── README.md
@@ -42,10 +48,12 @@ web-games/
 {
   title: "打砖块",
   desc: "一句话介绍这个游戏。",
-  url: "https://produce123.github.io/brick-breaker/", // 游戏的线上地址
+  url: "https://home.prodhub.me/brick-breaker/", // 线上地址
   repo: "https://github.com/produce123/brick-breaker", // 可选，会多一个「源码」按钮
   icon: "🧱", // 可选，一个 emoji
   tags: ["街机"], // 可选，搜索时会一起匹配
+  action: "开始游戏", // 可选，主按钮文字，默认就是「开始游戏」
+  pinned: false, // 可选，写 true 会置顶
 }
 ```
 
@@ -55,10 +63,12 @@ web-games/
 | --- | --- | --- |
 | `title` | 是 | 卡片标题 |
 | `desc` | 否 | 一句话介绍 |
-| `url` | 否 | 游戏线上地址。留空表示网页还没部署，卡片显示「待部署」并置灰 |
+| `url` | 否 | 线上地址。留空表示网页还没部署，卡片显示「待部署」并置灰 |
 | `repo` | 否 | 源码仓库地址，填了会多一个「源码」按钮 |
 | `icon` | 否 | 一个 emoji，显示在卡片左侧 |
 | `tags` | 否 | 标签数组，搜索时会一起匹配 |
+| `action` | 否 | 主按钮文字，默认「开始游戏」。不是游戏就写「访问」 |
+| `pinned` | 否 | 写 `true` 会置顶，和它在数组里的位置无关 |
 
 游戏数量达到 4 个时，页面顶部会自动出现搜索框（少于 4 个时自动隐藏，避免占地方）。
 
@@ -66,7 +76,7 @@ web-games/
 
 在游戏仓库里：**Settings → Pages → Source 选 `Deploy from a branch` → 分支 `main`、目录 `/ (root)` → Save**。
 
-等一两分钟，地址就是 `https://produce123.github.io/<仓库名>/`。把这个地址填进 `games.js` 的 `url` 即可。
+等一两分钟，地址就是 `https://home.prodhub.me/<仓库名>/`。把这个地址填进 `games.js` 的 `url` 即可。
 
 ## 本地预览
 
