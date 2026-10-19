@@ -48,4 +48,12 @@ window.GAMES = [
     icon: "💀",
     tags: ["多人联机", "WebRTC", "派对"],
   },
+  {
+    title: "刀马 BladeSteed",
+    desc: "纯前端 WebRTC 2–4 人联机猜拳对战小游戏，零依赖零构建。",
+    url: "https://home.prodhub.me/BladeSteed/",
+    repo: "https://github.com/produce123/BladeSteed",
+    icon: "⚔️",
+    tags: ["多人联机", "WebRTC", "猜拳"],
+  },
 ];
