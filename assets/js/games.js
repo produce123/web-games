@@ -17,7 +17,7 @@
    https://home.prodhub.me/my-game/
 
    注意（缓存）：GitHub Pages 把 assets/ 下的文件强缓存 4 小时（HTML 只有 10 分钟）。
-   改完这个文件后如果刷新页面看不到变化，把 index.html 里几处 ?v=2 的数字一起 +1
+   改完这个文件后如果刷新页面看不到变化，把 index.html 里几处 ?v= 的数字一起 +1
    再推送即可；临时想立刻看效果按 Ctrl+Shift+R 强刷。
    ========================================================================== */
 
@@ -39,5 +39,13 @@ window.GAMES = [
     repo: "https://github.com/produce123/Cannon-Goblin",
     icon: "💥",
     tags: ["棋盘", "WebRTC 联机", "零依赖"],
+  },
+  {
+    title: "Shell Gambit",
+    desc: "恶魔轮盘聚会版 · 纯前端 WebRTC 多人联机霰弹枪轮盘，2–4 人，零依赖、不需要服务器。",
+    url: "https://home.prodhub.me/shell-gambit/",
+    repo: "https://github.com/produce123/shell-gambit",
+    icon: "💀",
+    tags: ["多人联机", "WebRTC", "派对"],
   },
 ];
